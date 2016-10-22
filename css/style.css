@@ -1,0 +1,10 @@
+body {
+  width:80%;
+  margin:auto;
+}
+.email{
+  margin: 50px;
+}
+.mail_body{
+display:none;
+}
