@@ -4,10 +4,28 @@
 		<link href="css/style.css" rel="stylesheet" media="screen">
     <script>
       window.onload = function(){
-				alert("hey");
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE.
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+				var change = document.getElementById('header');
+				 change.innerHTML="<div>Geeeemail</div>";
+				function create_email(message)
+					{
+					var change = document.getElementById('content');
+					change.innerHTML+= "
+					<div class='container email'>
+						<div class='date'>" + message.date + "
+						</div>
+						<div class='sender'>" + message.sender + "
+						</div>
+						<div class='subject'>" + message.subject + "
+						</div>
+						<div class='body'>" + message.body +"
+						</div>
+					</div> <!--email-->"
 
+
+
+					}
       };
     </script>
 	</head>
