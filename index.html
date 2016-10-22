@@ -1,54 +1,31 @@
 <html>
-	<head>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
-    <script>
-      window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE.
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-				var change = document.getElementById('header');
-				 change.innerHTML="<div>Geeeemail</div>";
-				function create_email(message)
-					{
-					var change = document.getElementById('content');
-					change.innerHTML+= "
-					<div class='container email'>
-						<div class='date'>" + message.date + "
-						</div>
-						<div class='sender'>" + message.sender + "
-						</div>
-						<div class='subject'>" + message.subject + "
-						</div>
-						<div class='body'>" + message.body +"
-						</div>
-					</div> <!--email-->"
+<head>
+	<script src="js/mail-generator.js"></script>
+	<link href="css/style.css" rel="stylesheet" media="screen">
+	<script>
+	window.onload = function(){
+		// ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE.
+		// We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+		var change = document.getElementById('content');
+		function create_email(message)
+		{
+			change.innerHTML+= "<div class='container email'><div class='date clickable'>" + message.date + "</div><div class='sender clickable'>" + message.sender + "</div><div class='subject clickable'>" + message.subject + "</div><div class='mail_body'>" + message.body + "</div></div>";
+		}
+		for (var i = 0; i < window.geemails.length; i++){
+			create_email (window.geemails[i]);
+//			alert ("hey");
+		}
 
+	};
+	</script>
+</head>
+<body>
+	<div class="container" id="header">
+		GeeMail
+	</div> <!--Header-->
 
+	<div class="container" id="content">
 
-					}
-      };
-    </script>
-	</head>
-	<body>
-		<div class="container" id="header">
-			GeeMail
-		</div> <!--Header-->
-
-		<div class="container" id="content">
-			<div class="container" id="email">
-				<div class="clickable" id="date">
-
-				</div> <!--Date-->
-				<div class="clickable" id="sender">
-
-				</div> <!--sender-->
-				<div class="clickable" id="subject">
-
-				</div> <!--subject-->
-				<div class="" id="message_content">
-
-				</div> <!--message content-->
-			</div> <!--email-->
-		</div>
-	</body>
+	</div>
+</body>
 </html>
