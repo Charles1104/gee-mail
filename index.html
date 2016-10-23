@@ -11,14 +11,13 @@
 		var change = document.getElementById('content');
 		function count (){
 			counter++;
+			window.counter=counter;
 		}
-		function hide_show_body (id){
-			document.getElementById(id).style.display='block';
-		}
+
 
 		function create_email(message)
 		{
-			change.innerHTML+= "<div class='container email'><div class='date clickable'>" + message.date + "</div><div class='sender clickable' onclick='javascript:hide_show_body("+counter+")'>" + message.sender + "</div><div class='subject clickable'>" + message.subject + "</div><div class='mail_body' id='"+counter+"'>" + message.body + "</div></div>";
+			change.innerHTML+= "<div class='container email'><div class='date clickable'>" + message.date + "</div><div class='sender clickable' onclick='javascript:show_body("+counter+")'>" + message.sender + "</div><div class='subject clickable'>" + message.subject + "</div><div class='mail_body' id='"+counter+"'>" + message.body + "</div></div>";
 			count();
 			var header = document.getElementById('header');
 			header.innerHTML="GeeMail " + " Vous avez " + counter + " nouveaux messages";
@@ -30,6 +29,19 @@
 
 
 	};
+
+	function show_body (id){
+		for (var i=0; i< window.counter; i++){
+			hide_body (i);
+		}
+		document.getElementById(id).style.display='block';
+	}
+
+	function hide_body (id){
+		document.getElementById(id).style.display='none';
+	}
+
+
 	</script>
 </head>
 <body>
