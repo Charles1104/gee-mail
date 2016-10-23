@@ -4,7 +4,13 @@ body {
 }
 .email{
   margin: 50px;
+  border-bottom: thick solid black;
 }
 .mail_body{
 display:none;
+margin-top: 20px;
+}
+
+h1 {
+  color:blue;
 }
