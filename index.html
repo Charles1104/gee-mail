@@ -19,7 +19,7 @@
 
 		// Javascript that generates HTML and will update the counter in the "header" div section
 			var header = document.getElementById('header');
-			header.innerHTML="GeeMail " + " Vous avez " + counter + " nouveaux messages";
+			header.innerHTML="GeeMail " + " You have " + counter + " new messages";
 
 		// Need to assign counter at a window level for use at a later stage
 			window.counter=counter;
@@ -34,6 +34,9 @@
 			change.innerHTML+= "<div class='container email' onclick='javascript:show_body("+counter+")'> <div class='date clickable'>" + message.date + "</div><div class='sender clickable'>" + message.sender + "</div><div class='subject clickable'>" + message.subject + "</div><div class='mail_body' id='"+counter+"'>" + message.body + "</div></div>";
 			count();
 		}
+
+		// Function that will generate a new email every 20 seconds
+		setInterval(function(){create_email(getNewMessage())}, 20000);
 
 		// Will create as many emails as there are elements in the array window.geemails
 		for (var i = 0; i < window.geemails.length; i++){
@@ -53,8 +56,11 @@
 				style=window.getComputedStyle(element),
 				top=style.getPropertyValue('display');
 
+	/*
+	Condition to check the status of the content (open or closed). In case of open, will close the email upon clicking on it. And reversely when closed.
+	*/
 		if (top=='none'){
-		for (var i=0; i< window.counter; i++){
+		for (var i=0; i< window.counter; i++){ // close all the other contents
 			hide_body (i);
 		}
 		document.getElementById(id).style.display='block';
