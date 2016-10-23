@@ -6,22 +6,36 @@
 	window.onload = function(){
 		// ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE.
 		// We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+
+		// Variable counter in order to identify each email
 		var counter=0;
 
+		// Variable that will enable to change the inner content of the div
 		var change = document.getElementById('content');
+
+		// Function that that will increment the variable counter. this will be called every time a new email is generated.
 		function count (){
 			counter++;
+
+		// Javascript that generates HTML and will update the counter in the "header" div section
+			var header = document.getElementById('header');
+			header.innerHTML="GeeMail " + " Vous avez " + counter + " nouveaux messages";
+
+		// Need to assign counter at a window level for use at a later stage
 			window.counter=counter;
 		}
 
-
+		/*
+		pre: Need to have message.date, message.sender, message.subject and message.body as valid parameters
+		post: it will create four div containing the email wih its characteristics
+		*/
 		function create_email(message)
 		{
 			change.innerHTML+= "<div class='container email'><div class='date clickable'>" + message.date + "</div><div class='sender clickable' onclick='javascript:show_body("+counter+")'>" + message.sender + "</div><div class='subject clickable'>" + message.subject + "</div><div class='mail_body' id='"+counter+"'>" + message.body + "</div></div>";
 			count();
-			var header = document.getElementById('header');
-			header.innerHTML="GeeMail " + " Vous avez " + counter + " nouveaux messages";
 		}
+
+		// Will create as many emails as there are elements in the array window.geemails
 		for (var i = 0; i < window.geemails.length; i++){
 			create_email (window.geemails[i]);
 //			alert ("hey");
@@ -30,6 +44,10 @@
 
 	};
 
+	/*
+	pre: We need ID to be a valid email
+	post: Will show the content of the email with ID linked to it and will hide all other emails non related to this ID
+	*/
 	function show_body (id){
 		for (var i=0; i< window.counter; i++){
 			hide_body (i);
@@ -37,6 +55,10 @@
 		document.getElementById(id).style.display='block';
 	}
 
+	/*
+	pre: We need ID to be a valid email
+	post: Will hide the content of the email with ID selected
+	*/
 	function hide_body (id){
 		document.getElementById(id).style.display='none';
 	}
