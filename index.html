@@ -31,7 +31,7 @@
 		*/
 		function create_email(message)
 		{
-			change.innerHTML+= "<div class='container email'><div class='date clickable'>" + message.date + "</div><div class='sender clickable' onclick='javascript:show_body("+counter+")'>" + message.sender + "</div><div class='subject clickable'>" + message.subject + "</div><div class='mail_body' id='"+counter+"'>" + message.body + "</div></div>";
+			change.innerHTML+= "<div class='container email' onclick='javascript:show_body("+counter+")'> <div class='date clickable'>" + message.date + "</div><div class='sender clickable'>" + message.sender + "</div><div class='subject clickable'>" + message.subject + "</div><div class='mail_body' id='"+counter+"'>" + message.body + "</div></div>";
 			count();
 		}
 
@@ -49,10 +49,19 @@
 	post: Will show the content of the email with ID linked to it and will hide all other emails non related to this ID
 	*/
 	function show_body (id){
+		var element = document.getElementById(id),
+				style=window.getComputedStyle(element),
+				top=style.getPropertyValue('display');
+
+		if (top=='none'){
 		for (var i=0; i< window.counter; i++){
 			hide_body (i);
 		}
 		document.getElementById(id).style.display='block';
+	}
+		else {
+			hide_body (id);
+		}
 	}
 
 	/*
